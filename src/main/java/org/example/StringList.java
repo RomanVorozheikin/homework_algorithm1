@@ -36,6 +36,7 @@ public interface StringList {
     // элемент отсутствует в списке.
     String remove(int index);
 
+
     // Проверка на существование элемента.
     // Вернуть true/false;
     boolean contains(String item);
