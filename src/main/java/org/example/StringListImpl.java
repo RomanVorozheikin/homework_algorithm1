@@ -79,7 +79,6 @@ public class StringListImpl implements StringList{
         size--;
         return item;
     }
-
     @Override
     public boolean contains(String item) {
         return indexOf(item)!=-1;

@@ -10,6 +10,7 @@ public class Main {
         StringListImpl stringList = new StringListImpl();
         stringList.add("123");
         stringList.add("de");
+
         System.out.println(stringList.add(1, "456"));
     }
 }
