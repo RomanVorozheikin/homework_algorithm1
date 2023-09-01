@@ -1,16 +1,24 @@
 package org.example;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        StringListImpl stringList = new StringListImpl();
-        stringList.add("123");
-        stringList.add("de");
+        IntegerListImpl integerList = new IntegerListImpl();
 
-        System.out.println(stringList.add(1, "456"));
+        Integer[] integers1 = integerList.generateRandomArray();
+        Integer[] integers2 = integerList.generateRandomArray();
+        Integer[] integers3 = integerList.generateRandomArray();
+
+        long start1 = System.currentTimeMillis();
+        integerList.sortBubble(integers1);
+        System.out.println(System.currentTimeMillis() - start1);
+
+        long start2 = System.currentTimeMillis();
+        integerList.sortSelection(integers2);
+        System.out.println(System.currentTimeMillis() - start2);
+
+        long start3 = System.currentTimeMillis();
+        integerList.sortInsertion(integers3);
+        System.out.println(System.currentTimeMillis() - start3);
+
     }
 }
