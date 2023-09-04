@@ -16,9 +16,9 @@ public class Main {
         integerList.sortSelection(integers2);
         System.out.println(System.currentTimeMillis() - start2);
 
-        long start3 = System.currentTimeMillis();
-        integerList.sortInsertion(integers3);
-        System.out.println(System.currentTimeMillis() - start3);
+//        long start3 = System.currentTimeMillis();
+//        integerList.sortInsertion(integers3);
+//        System.out.println(System.currentTimeMillis() - start3);
 
     }
 }

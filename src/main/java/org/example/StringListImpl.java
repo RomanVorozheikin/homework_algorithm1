@@ -10,28 +10,28 @@ import java.util.Arrays;
 import static java.util.Arrays.copyOf;
 
 public class StringListImpl implements StringList{
-    private final String[] strings;
+    private Integer[] strings;
     int size=0;
 
     public StringListImpl() {
-        strings = new String[10];
+        strings = new Integer[10];
     }
 
     public StringListImpl(int initSize) {
-        strings=new String[initSize];
+        strings=new Integer[initSize];
     }
 
     @Override
-    public String add(String item) {
-        validateSize();
+    public Integer add(Integer item) {
+        growSize();
         validateItem(item);
         strings[size++] = item;
         return item;
     }
 
     @Override
-    public String add(int index, String item) {
-        validateSize();
+    public Integer add(int index, Integer item) {
+        growSize();
         validateItem(item);
         validateIndex(index);
         if (index == size) {
@@ -46,7 +46,7 @@ public class StringListImpl implements StringList{
     }
 
     @Override
-    public String set(int index, String item) {
+    public Integer set(int index, Integer item) {
         validateIndex(index);
         validateItem(item);
         strings[index] = item;
@@ -54,7 +54,7 @@ public class StringListImpl implements StringList{
     }
 
     @Override
-    public String remove(String item) {
+    public Integer remove(Integer item) {
         validateItem(item);
 
         int index = lastIndexOf(item);
@@ -70,9 +70,9 @@ public class StringListImpl implements StringList{
     }
 
     @Override
-    public String remove(int index) {
+    public Integer remove(int index) {
         validateIndex(index);
-        String item = strings[index];
+        Integer item = strings[index];
         if (index != size) {
             System.arraycopy(strings, index + 1, strings, index, size - index);
         }
@@ -80,12 +80,12 @@ public class StringListImpl implements StringList{
         return item;
     }
     @Override
-    public boolean contains(String item) {
+    public boolean contains(Integer item) {
         return indexOf(item)!=-1;
     }
 
     @Override
-    public int indexOf(String item) {
+    public int indexOf(Integer item) {
         for (int i = 0; i < size; i++) {
             if (item.equals(strings[i])) {
                 return i;
@@ -95,7 +95,7 @@ public class StringListImpl implements StringList{
     }
 
     @Override
-    public int lastIndexOf(String item) {
+    public int lastIndexOf(Integer item) {
         for (int i = size-1; i >=0; i--) {
             if (item.equals(strings[i])) {
                 return i;
@@ -105,7 +105,7 @@ public class StringListImpl implements StringList{
     }
 
     @Override
-    public String get(int index) {
+    public Integer get(int index) {
         validateIndex(index);
         return strings[index];
     }
@@ -131,19 +131,19 @@ public class StringListImpl implements StringList{
     }
 
     @Override
-    public String[] toArray() {
+    public Integer[] toArray() {
         return copyOf(strings,size);
     }
 
-    private void validateItem(String item) {
+    private void validateItem(Integer item) {
         if (item == null) {
             throw new NullItemException();
         }
     }
 
-    private void validateSize() {
+    private void growSize() {
         if (size == strings.length) {
-            throw new StringsIsFullException();
+            grow();
         }
     }
 
@@ -151,5 +151,39 @@ public class StringListImpl implements StringList{
         if (index >= size) {
             throw new InvalidIndexException();
         }
+    }
+    private void grow() {
+        Arrays.copyOf(strings, size+size/2);
+    }
+
+    private void quickSort(Integer[] arr,int begin,int end) {
+        if (begin < end) {
+            int partitionIndex = partition(arr, begin, end);
+
+            quickSort(arr, begin, partitionIndex - 1);
+            quickSort(arr, partitionIndex + 1, end);
+        }
+    }
+
+    private int partition(Integer[] arr, int begin, int end) {
+        int pivot = arr[end];
+        int i = (begin - 1);
+
+        for (int j = begin; j < end; j++) {
+            if (arr[j] <= pivot) {
+                i++;
+
+                swapElements(arr, i, j);
+            }
+        }
+
+        swapElements(arr, i + 1, end);
+        return i + 1;
+    }
+
+    private void swapElements(Integer[] arr, int left, int right) {
+        int temp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = temp;
     }
 }

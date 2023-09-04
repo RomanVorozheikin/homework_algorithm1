@@ -4,7 +4,7 @@ public interface StringList {
     // Добавление элемента.
     // Вернуть добавленный элемент
     // в качестве результата выполнения.
-    String add(String item);
+    Integer add(Integer item);
 
     // Добавление элемента
     // на определенную позицию списка.
@@ -13,7 +13,7 @@ public interface StringList {
     // выбросить исключение.
     // Вернуть добавленный элемент
     // в качестве результата выполнения.
-    String add(int index, String item);
+    Integer add(int index, Integer item);
 
     // Установить элемент
     // на определенную позицию,
@@ -22,40 +22,40 @@ public interface StringList {
     // если индекс больше
     // фактического количества элементов
     // или выходит за пределы массива.
-    String set(int index, String item);
+    Integer set(int index, Integer item);
 
     // Удаление элемента.
     // Вернуть удаленный элемент
     // или исключение, если подобный
     // элемент отсутствует в списке.
-    String remove(String item);
+    Integer remove(Integer item);
 
     // Удаление элемента по индексу.
     // Вернуть удаленный элемент
     // или исключение, если подобный
     // элемент отсутствует в списке.
-    String remove(int index);
+    Integer remove(int index);
 
 
     // Проверка на существование элемента.
     // Вернуть true/false;
-    boolean contains(String item);
+    boolean contains(Integer item);
 
     // Поиск элемента.
     // Вернуть индекс элемента
     // или -1 в случае отсутствия.
-    int indexOf(String item);
+    int indexOf(Integer item);
 
     // Поиск элемента с конца.
     // Вернуть индекс элемента
     // или -1 в случае отсутствия.
-    int lastIndexOf(String item);
+    int lastIndexOf(Integer item);
 
     // Получить элемент по индексу.
     // Вернуть элемент или исключение,
     // если выходит за рамки фактического
     // количества элементов.
-    String get(int index);
+    Integer get(int index);
 
     // Сравнить текущий список с другим.
     // Вернуть true/false или исключение,
@@ -76,5 +76,5 @@ public interface StringList {
     // Создать новый массив
     // из строк в списке
     // и вернуть его.
-    String[] toArray();
+    Integer[] toArray();
 }

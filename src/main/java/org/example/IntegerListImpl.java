@@ -20,27 +20,40 @@ public class IntegerListImpl implements SortIntegerList {
 
     @Override
     public void sortBubble(Integer[] arr) {
-        int max = Integer.MAX_VALUE;
-        int indexMax = 0;
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length-1-i; j++) {
-                if (arr[j] >= arr[j+1]) {
-                    swapElements(arr,j,j+1);
+        boolean isSort = false;
+        while (!isSort) {
+            isSort = true;
+            for (int i = 1; i < arr.length; i++) {
+                if (arr[i] < arr[i - 1]) {
+                    int tmp = arr[i];
+                    arr[i] = arr[i - 1];
+                    arr[i - 1] = tmp;
+                    isSort = false;
                 }
             }
         }
     }
 
+    private int min(Integer[] arr,int start) {
+        int minValue = arr[start];
+        int minIndex = start;
+        for (int i = start + 1; i < arr.length; i++) {
+            if (arr[i] < minValue) {
+                minValue = arr[i];
+                minIndex = i;
+            }
+        }
+        return minIndex;
+    }
+
     @Override
     public void sortSelection(Integer[] arr) {
-        for (int i = 0; i < arr.length - 1; i++) {
-            int minElementIndex = i;
-            for (int j = i + 1; j < arr.length; j++) {
-                if (arr[j] < arr[minElementIndex]) {
-                    minElementIndex = j;
-                }
-            }
-            swapElements(arr, i, minElementIndex);
+        for (int sours = 0; sours < arr.length; sours++) {
+            int index = min(arr, sours);
+
+            int tmp = arr[sours];
+            arr[sours] = arr[index];
+            arr[index] = tmp;
         }
     }
     @Override
